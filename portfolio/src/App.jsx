@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Github, Linkedin, Mail, ExternalLink, Code, Palette, Zap } from 'lucide-react';
+// The import statement
 import { link, title } from 'framer-motion/client';
-import { projects, socials, } from '../data.js';
+import { motion } from 'framer-motion';
+import { projects, socials } from '../data.js';
 
 export default function Portfolio() {
   const [scrollY, setScrollY] = useState(0);
@@ -33,33 +35,44 @@ const skills = [
   return (
     <div className="bg-black text-white overflow-x-hidden">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-blue-900/20">
-        <div className="max-w-6xl mx-auto px-6 py-4">
-          <div className="flex justify-between items-center">
-            <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
-            </div>
-            <div className="flex items-center space-x-8">
-              <div className="hidden md:flex space-x-8">
-                {['About', 'Projects', 'Skills', 'Contact'].map((item) => (
-                  <button
-                    key={item}
-                    onClick={() => scrollToSection(item.toLowerCase())}
-                    className="text-gray-300 hover:text-blue-400 transition-colors duration-300 relative group"
-                  >
-                    {item}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
-                  </button>
-                ))}
+      <nav className="fixed right-0 top-0 h-full w-20 z-50 bg-transparent flex flex-col items-center py-8">
+        <div className="flex flex-col space-y-6 flex-1">
+          {[
+            { name: 'About', icon: <Palette size={24} /> },
+            { name: 'Projects', icon: <Zap size={24} /> },
+            { name: 'Skills', icon: <Code size={24} /> },
+            { name: 'Contact', icon: <Mail size={24} /> },
+            { name: 'GitHub', icon: <Github size={24} /> }
+          ].map((item, index) => (
+            <button
+              key={item.name}
+              onClick={() => scrollToSection(item.name.toLowerCase())}
+              className="group relative w-12 h-12 md:w-16 md:h-16 md:text-lg bg-gray-900/50 hover:bg-blue-900/40 rounded-xl transition-all duration-300 hover:scale-110 flex items-center justify-center border border-blue-900/20 hover:border-blue-600/50 hover:cursor-pointer"
+              style={{ animationDelay: `${index * 0.1}s` }}
+              title={item.name}
+            >
+              <span className="text-blue-400 text-xl group-hover:text-blue-300 transition-colors">
+                {item.icon}
+              </span>
+              
+              {/* Tooltip */}
+              <div className="absolute right-16 bg-gray-900 text-white px-3 py-2 rounded-lg text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap border border-blue-900/30">
+                {item.name}
               </div>
-              <a href="">
-              <button className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 px-6 py-2 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 text-sm font-medium">
-                Download Resume
-              </button>
-              </a>
-            </div>
-          </div>
+            </button>
+          ))}
+        </div>
+        
+        <div className="mt-auto">
+          <a href="https://drive.google.com/file/d/1Eu2b-G1h_NYjzIz_q8MezWqIby_Tl1x9/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+          <button className="w-12 h-12 md:w-16 md:h-16 md:text-lg bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-blue-500/25 flex items-center justify-center text-white font-bold text-xs hover:cursor-pointer" title="Download Resume">
+            CV
+          </button>
+          </a>
         </div>
       </nav>
+
+      
 
       {/* Hero Section */}
       <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
@@ -80,35 +93,52 @@ const skills = [
           >
             {/* Profile Image */}
             <div className="mb-8 animate-fade-in">
-              <div className="relative w-32 h-32 md:w-40 md:h-40 mx-auto mb-6">
+              <div className="relative w-32 h-32 md:w-40 md:h-40 mx-auto mb-6 animate-bounce-img">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full animate-spin-slow opacity-75"></div>
                 <div className="absolute inset-1 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full"></div>
                 <img
                   src=""
                   alt="Developer Profile"
-                  className="absolute inset-2 w-full h-full rounded-full object-cover border-2 border-blue-400/30 hover:scale-105 transition-transform duration-500"
+                  className="absolute inset-2 w-full h-full rounded-full object-cover border-2 border-blue-400/30 hover:scale-105 transition-transform duration-500 "
                 />
                 <div className="absolute -inset-2 bg-gradient-to-r from-blue-400/20 to-blue-600/20 rounded-full blur-lg animate-pulse"></div>
               </div>
             </div>
-            
-            <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-blue-400 bg-clip-text text-transparent animate-fade-in">
+            <motion.h1
+              {...title}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0}}
+              transition={{ duration: 1, delay: 0.2 }}
+              style={{ transform: `translateY(${scrollY * 0.1}px)` }}
+              className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-blue-400 bg-clip-text text-transparent animate-fade-in"
+            >
               Soumil Shamak
-            </h1>
+            </motion.h1>
             <p className="text-xl md:text-2xl text-gray-300 mb-8 animate-fade-in-delay">
               Full Stack Developer & Creative Problem Solver
             </p>
             <div className="flex justify-center space-x-6 mb-12">
-              {[Github, Linkedin, Mail].map((Icon, index) => (
+              <a
+                  href="https://www.github.com/shamak24"
+                  className="p-3 bg-blue-900/30 hover:bg-blue-800/50 rounded-full transition-all duration-300 hover:scale-110 hover:rotate-12 animate-fade-in-up"
+                  target='_blank'
+                >
+                  <Github size={24} />
+                </a>
                 <a
-                  key={index}
+                  href="https://www.linkedin.com/in/soumil-shamak"
+                  className="p-3 bg-blue-900/30 hover:bg-blue-800/50 rounded-full transition-all duration-300 hover:scale-110 hover:rotate-12 animate-fade-in-up"
+                  target='_blank'
+                >
+                  <Linkedin size={24} />
+                </a>
+                <a
                   href="#"
                   className="p-3 bg-blue-900/30 hover:bg-blue-800/50 rounded-full transition-all duration-300 hover:scale-110 hover:rotate-12 animate-fade-in-up"
-                  style={{ animationDelay: `${index * 0.2}s` }}
+                  target='_blank'
                 >
-                  <Icon size={24} />
+                  <Mail size={24} />
                 </a>
-              ))}
             </div>
           </div>
         </div>
@@ -149,7 +179,7 @@ const skills = [
       {/* Projects Section */}
       <section id="projects" className="py-20 px-6 bg-gradient-to-b from-black to-blue-950/20">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent pb-2">
             Featured Projects
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -203,7 +233,7 @@ const skills = [
       {/* Skills Section */}
       <section id="skills" className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent pb-2">
             Skills & Expertise
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -236,10 +266,70 @@ const skills = [
         </div>
       </section>
 
+      {/* GitHub Stats Section */}
+      <section id="github" className="py-20 px-6 bg-gradient-to-b from-black to-blue-950/10 mr-20">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent pb-2">
+            GitHub Statistics
+          </h2>
+          <div className="grid lg:grid-cols-2 gap-8 mb-12">
+            {/* GitHub Stats Card */}
+            <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-blue-900/20 hover:border-blue-700/50 transition-all duration-300 hover:scale-105 animate-fade-in-up">
+              <h3 className="text-xl font-bold mb-4 text-center text-blue-400">Overall Stats</h3>
+              <div className="flex justify-center">
+                <img 
+                  src="https://github-readme-stats.vercel.app/api?username=shamak24&show_icons=true&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=3b82f6&icon_color=60a5fa&text_color=e5e7eb&ring_color=3b82f6"
+                  alt="GitHub Stats"
+                  className="rounded-lg max-w-full h-auto"
+                />
+              </div>
+            </div>
+
+            {/* Top Languages Card */}
+            <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-blue-900/20 hover:border-blue-700/50 transition-all duration-300 hover:scale-105 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+              <h3 className="text-xl font-bold mb-4 text-center text-blue-400">Most Used Languages</h3>
+              <div className="flex justify-center">
+                <img 
+                  src="https://github-readme-stats.vercel.app/api/top-langs/?username=shamak24&layout=compact&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=3b82f6&text_color=e5e7eb"
+                  alt="Top Languages"
+                  className="rounded-lg max-w-full h-auto"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* GitHub Streak Stats */}
+          <div className="flex justify-center mb-12">
+            <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-blue-900/20 hover:border-blue-700/50 transition-all duration-300 hover:scale-105 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+              <h3 className="text-xl font-bold mb-4 text-center text-blue-400">Contribution Streak</h3>
+              <div className="flex justify-center">
+                <img 
+                  src="https://github-readme-streak-stats.herokuapp.com/?user=shamak24&theme=tokyonight&hide_border=true&background=00000000&stroke=3b82f6&ring=3b82f6&fire=60a5fa&currStreakLabel=e5e7eb&sideLabels=e5e7eb&currStreakNum=3b82f6&sideNums=3b82f6"
+                  alt="GitHub Streak"
+                  className="rounded-lg max-w-full h-auto"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Activity Graph */}
+          {/* <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-blue-900/20 hover:border-blue-700/50 transition-all duration-300 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+            <h3 className="text-xl font-bold mb-4 text-center text-blue-400">Contribution Activity</h3>
+            <div className="flex justify-center overflow-x-auto">
+              <img 
+                src="https://github-readme-activity-graph.vercel.app/graph?username=shamak24&theme=tokyo-night&bg_color=00000000&color=3b82f6&line=60a5fa&point=e5e7eb&area=true&hide_border=true"
+                alt="GitHub Activity Graph"
+                className="rounded-lg max-w-full h-auto"
+              />
+            </div>
+          </div> */}
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section id="contact" className="py-20 px-6 bg-gradient-to-t from-blue-950/20 to-black">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent pb-2">
             Let's Work Together
           </h2>
           <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
@@ -305,6 +395,13 @@ const skills = [
         @keyframes pulse-glow {
           0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
           50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.5), 0 0 40px rgba(59, 130, 246, 0.2); }
+        }
+        @keyframes bounce-img {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+        .animate-bounce-img {
+          animation: bounce-img 2s ease-in-out infinite;
         }
         
         .animate-fade-in {

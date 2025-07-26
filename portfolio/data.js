@@ -1,7 +1,7 @@
 export const socials = [
-  { name: "github", link: "https://github.com/shamak24"},
-  {name: "linkedin", link: "https://linkedin.com/in/soumil-shamak"},
-  {name: "mail", link: ""}
+  { github: "https://github.com/shamak24"},
+  {linkedin: "https://linkedin.com/in/soumil-shamak"},
+  {mail: ""}
 ];
 export const projects = [
     {
