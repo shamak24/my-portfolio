@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Github, Linkedin, Mail, ExternalLink, Code, Palette, Zap } from 'lucide-react';
+import { link, title } from 'framer-motion/client';
+import { projects, socials, } from '../data.js';
 
 export default function Portfolio() {
   const [scrollY, setScrollY] = useState(0);
@@ -15,16 +17,7 @@ export default function Portfolio() {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const projects = [
-    {
-      title: "Fishkat",
-      description: "",
-      tech: ["Django", "Python", "JS", "HTML/CSS", "Bootstrap"],
-      image: ""
-    },
-  ];
-
-  const skills = [
+const skills = [
     { name: "JavaScript", icon: Code, level: 95 },
     { name: "React", icon: Code, level: 92 },
     { name: "Node.js", icon: Code, level: 88 },
@@ -34,7 +27,8 @@ export default function Portfolio() {
     { name: "MongoDB", icon: Code, level: 78 },
     { name: "PostgreSQL", icon: Code, level: 75 },
     { name: "AWS", icon: Code, level: 70 }
-  ];
+];
+  
 
   return (
     <div className="bg-black text-white overflow-x-hidden">
@@ -75,7 +69,7 @@ export default function Portfolio() {
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-float"></div>
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl animate-float-delayed"></div>
-          <div className="absolute top-40 right-20 w-32 h-32 bg-blue-400/5 rounded-full blur-2xl animate-pulse"></div>
+          <div className="absolute top-40 right-20 w-32 h-32 bg-blue-400/5 rounded-full blur-2xl animate-float"></div>
           <div className="absolute bottom-40 left-20 w-48 h-48 bg-blue-300/5 rounded-full blur-2xl animate-bounce-slow"></div>
         </div>
 
@@ -143,8 +137,10 @@ export default function Portfolio() {
               </p>
             </div>
             <div className="relative">
-              <div className="w-80 h-80 mx-auto bg-gradient-to-br from-blue-600/20 to-blue-800/20 rounded-2xl rotate-6 hover:rotate-12 transition-transform duration-500"></div>
-              <div className="absolute inset-0 w-80 h-80 mx-auto bg-gradient-to-br from-blue-500/10 to-blue-700/10 rounded-2xl -rotate-6 hover:-rotate-12 transition-transform duration-500"></div>
+              <div className="w-80 h-80 mx-auto bg-gradient-to-br from-blue-600/20 to-blue-800/20 rounded-2xl rotate-6 hover:rotate-12 transition-transform duration-500">
+              </div>
+              <div className="absolute inset-0 w-80 h-80 mx-auto bg-gradient-to-br from-blue-500/10 to-blue-700/10 rounded-2xl -rotate-6 hover:-rotate-12 transition-transform duration-500">
+              </div>
             </div>
           </div>
         </div>
@@ -167,12 +163,18 @@ export default function Portfolio() {
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
+                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700 hover:opacity-10"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end">
                     <div className="p-4 flex space-x-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                      <ExternalLink size={20} className="text-white cursor-pointer hover:text-blue-400 hover:scale-125 transition-all duration-200" />
-                      <Github size={20} className="text-white cursor-pointer hover:text-blue-400 hover:scale-125 transition-all duration-200" />
+                      {project.web_link ? (
+                        <a href={project.web_link} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink size={30} className="text-white cursor-pointer hover:text-blue-400 hover:scale-125 transition-all duration-200" />
+                        </a>
+                      ) : null}
+                      <a href={project.github_url} target="_blank" rel="noopener noreferrer">
+                        <Github size={30} className="text-white cursor-pointer hover:text-blue-400 hover:scale-125 transition-all duration-200" />
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -257,7 +259,7 @@ export default function Portfolio() {
       <footer className="border-t border-blue-900/20 py-8 px-6">
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-gray-400">
-            © 2025 Soumil Shamak.
+            © 2025 Soumil Shamak
           </p>
         </div>
       </footer>
