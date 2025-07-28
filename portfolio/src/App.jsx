@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Github, Linkedin, Mail, ExternalLink, Code, Palette, Zap } from 'lucide-react';
 // The import statement
-import { div, link, title } from 'framer-motion/client';
 import { motion } from 'framer-motion';
 import { projects, skills } from '../data.js';
 
@@ -93,7 +92,6 @@ export default function Portfolio() {
               </div>
             </div>
             <motion.h1
-              {...title}
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0}}
               transition={{ duration: 1, delay: 0.2 }}
