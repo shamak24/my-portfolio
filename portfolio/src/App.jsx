@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Github, Linkedin, Mail, ExternalLink, Code, Palette, Zap } from 'lucide-react';
 // The import statement
-import { link, title } from 'framer-motion/client';
+import { div, link, title } from 'framer-motion/client';
 import { motion } from 'framer-motion';
-import { projects, socials } from '../data.js';
+import { projects, skills } from '../data.js';
 
 export default function Portfolio() {
   const [scrollY, setScrollY] = useState(0);
@@ -19,19 +19,6 @@ export default function Portfolio() {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
 
-const skills = [
-    { name: "JavaScript", icon: Code, level: 95 },
-    { name: "React", icon: Code, level: 92 },
-    { name: "Node.js", icon: Code, level: 88 },
-    { name: "TypeScript", icon: Code, level: 85 },
-    { name: "Python", icon: Code, level: 82 },
-    { name: "Next.js", icon: Code, level: 90 },
-    { name: "MongoDB", icon: Code, level: 78 },
-    { name: "PostgreSQL", icon: Code, level: 75 },
-    { name: "AWS", icon: Code, level: 70 }
-];
-  
-
   return (
     <div className="bg-black text-white overflow-x-hidden">
       {/* Navigation */}
@@ -41,13 +28,14 @@ const skills = [
             { name: 'About', icon: <Palette size={24} /> },
             { name: 'Projects', icon: <Zap size={24} /> },
             { name: 'Skills', icon: <Code size={24} /> },
-            { name: 'Contact', icon: <Mail size={24} /> },
-            { name: 'GitHub', icon: <Github size={24} /> }
+            { name: 'GitHub', icon: <Github size={24} /> },
+            { name: 'Contact', icon: <Mail size={24} /> }
+            
           ].map((item, index) => (
             <button
               key={item.name}
               onClick={() => scrollToSection(item.name.toLowerCase())}
-              className="group relative w-12 h-12 md:w-16 md:h-16 md:text-lg bg-gray-900/50 hover:bg-blue-900/40 rounded-xl transition-all duration-300 hover:scale-110 flex items-center justify-center border border-blue-900/20 hover:border-blue-600/50 hover:cursor-pointer"
+              className="group relative w-12 h-12 md:w-16 md:h-16 md:text-lg bg-gray-900/50 hover:bg-blue-900/40 rounded-lg transition-all duration-300 hover:scale-110 flex items-center justify-center border border-blue-900/20 hover:border-blue-600/50 hover:cursor-pointer"
               style={{ animationDelay: `${index * 0.1}s` }}
               title={item.name}
             >
@@ -56,7 +44,7 @@ const skills = [
               </span>
               
               {/* Tooltip */}
-              <div className="absolute right-16 bg-gray-900 text-white px-3 py-2 rounded-lg text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap border border-blue-900/30">
+              <div className="absolute right-18 bg-gray-900 text-white px-3 py-2 rounded-lg text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap border border-blue-900/30">
                 {item.name}
               </div>
             </button>
@@ -64,7 +52,7 @@ const skills = [
         </div>
         
         <div className="mt-auto">
-          <a href="https://drive.google.com/file/d/1Eu2b-G1h_NYjzIz_q8MezWqIby_Tl1x9/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+          <a href="https://drive.google.com/file/d/1usbfKdVELRkrjT_uzo3x-Xj4EL12s5Ox/view?usp=sharing" target="_blank" rel="noopener noreferrer">
           <button className="w-12 h-12 md:w-16 md:h-16 md:text-lg bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-blue-500/25 flex items-center justify-center text-white font-bold text-xs hover:cursor-pointer" title="Download Resume">
             CV
           </button>
@@ -114,9 +102,7 @@ const skills = [
             >
               Soumil Shamak
             </motion.h1>
-            <p className="text-xl md:text-2xl text-gray-300 mb-8 animate-fade-in-delay">
-              Full Stack Developer & Creative Problem Solver
-            </p>
+            
             <div className="flex justify-center space-x-6 mb-12">
               <a
                   href="https://www.github.com/shamak24"
@@ -133,7 +119,7 @@ const skills = [
                   <Linkedin size={24} />
                 </a>
                 <a
-                  href="#"
+                  href="mailto:shamaksoumil@gmail.com"
                   className="p-3 bg-blue-900/30 hover:bg-blue-800/50 rounded-full transition-all duration-300 hover:scale-110 hover:rotate-12 animate-fade-in-up"
                   target='_blank'
                 >
@@ -160,10 +146,13 @@ const skills = [
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <p className="text-lg text-gray-300 leading-relaxed">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum nobis labore repellendus quaerat similique, quam hic debitis perspiciatis animi perferendis laboriosam accusantium excepturi eius accusamus culpa autem vero corrupti alias.
+                Hi, I'm Soumil a Full Stack Developer with hands-on experience in designing, developing, and deploying scalable web applications. I specialize in building robust frontend interfaces and powerful backend architectures using modern technologies such as React, Node.js, and Django.
               </p>
               <p className="text-lg text-gray-300 leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam et reprehenderit fugit perferendis ullam magnam consequatur ut praesentium vel, dolorem laboriosam minus doloremque quos. Delectus corporis voluptate tempora dolore earum.
+                I actively implement DevOps practices to streamline development workflows, automate deployments, and ensure high system reliability through tools like Docker, GitHub Actions, and cloud platforms including AWS. I also leverage my Data Science knowledge to analyze data, uncover insights, and integrate intelligent features into applications.
+              </p>
+              <p className="text-lg text-gray-300 leading-relaxed">
+                When I'm not coding, you'll probably find me reading up on the latest tech news or probably watching movies after all I'm a cinephile.
               </p>
             </div>
             <div className="relative">
@@ -231,43 +220,38 @@ const skills = [
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent pb-2">
-            Skills & Expertise
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {skills.map((skill, index) => {
-              const Icon = skill.icon;
-              return (
-                <div
-                  key={index}
-                  className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 text-center hover:transform hover:scale-105 transition-all duration-500 border border-blue-900/20 group animate-slide-up hover:shadow-xl hover:shadow-blue-500/10"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className="inline-flex p-4 bg-blue-900/30 rounded-full mb-6 group-hover:bg-blue-800/40 transition-all duration-300 group-hover:rotate-12 group-hover:scale-110">
-                    <Icon size={32} className="text-blue-400 group-hover:text-blue-300 transition-colors" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-4 group-hover:text-blue-400 transition-colors">{skill.name}</h3>
-                  <div className="w-full bg-gray-800 rounded-full h-3 mb-4 overflow-hidden">
-                    <div
-                      className="bg-gradient-to-r from-blue-600 to-blue-400 h-3 rounded-full transition-all duration-1500 ease-out animate-progress-bar hover:shadow-lg hover:shadow-blue-400/30"
-                      style={{ 
-                        width: `${skill.level}%`,
-                        animationDelay: `${index * 0.2 + 0.5}s`
-                      }}
-                    ></div>
-                  </div>
-                  <span className="text-blue-400 font-semibold text-lg">{skill.level}%</span>
-                </div>
-              );
-            })}
+        <section id="skills" className="py-20 px-6 justify-center">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent pb-2">
+          Skills & Expertise
+            </h2>
+            <div className="grid md:grid-cols-3 gap-8">
+          {skills.map((skill, index) => (
+            <div key={index} className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 text-center hover:transform hover:scale-105 transition-all duration-500 border border-blue-900/20 group animate-slide-up hover:shadow-xl hover:shadow-blue-500/10 align-center">
+              <div className="inline-flex p-4 bg-blue-900/30 rounded-full mb-6 group-hover:bg-blue-800/40 transition-all duration-300 group-hover:rotate-12 group-hover:scale-110 ">
+            <span className='text-2xl'>
+              {skill.icon}
+            </span>
+              </div>
+              <h3 className="text-xl font-bold mb-4 group-hover:text-blue-400 transition-colors">
+            {skill.type}
+              </h3>
+              <ul className="list-disc list-inside text-gray-300 space-y-2">
+            {skill.list.map((item, i) => (
+              <li key={i} className="flex items-center space-x-2">
+                <span className={`icon-${item.icon} text-blue-400`}></span>
+                <span className="text-gray-200">{item.name}</span>
+              </li>
+            ))}
+              </ul>
+            </div>
+          ))}
           </div>
         </div>
       </section>
 
       {/* GitHub Stats Section */}
-      <section id="github" className="py-20 px-6 bg-gradient-to-b from-black to-blue-950/10 mr-20">
+      <section id="github" className="py-20 px-6 bg-gradient-to-b from-black to-blue-950/10">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent pb-2">
             GitHub Statistics
@@ -299,7 +283,7 @@ const skills = [
           </div>
 
           {/* GitHub Streak Stats */}
-          <div className="flex justify-center mb-12">
+          {/* <div className="flex justify-center mb-12">
             <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-blue-900/20 hover:border-blue-700/50 transition-all duration-300 hover:scale-105 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
               <h3 className="text-xl font-bold mb-4 text-center text-blue-400">Contribution Streak</h3>
               <div className="flex justify-center">
@@ -310,7 +294,7 @@ const skills = [
                 />
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Activity Graph */}
           {/* <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-blue-900/20 hover:border-blue-700/50 transition-all duration-300 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
@@ -351,6 +335,29 @@ const skills = [
           <p className="text-gray-400">
             © 2025 Soumil Shamak
           </p>
+          <div className="flex justify-center space-x-4 mt-4 align-center">
+            <a
+                  href="https://www.github.com/shamak24"
+                  className="p-3 bg-blue-900/30 hover:bg-blue-800/50 rounded-full transition-all duration-300 hover:scale-110 hover:rotate-12 animate-fade-in-up"
+                  target='_blank'
+                >
+                  <Github size={24} />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/soumil-shamak"
+                  className="p-3 bg-blue-900/30 hover:bg-blue-800/50 rounded-full transition-all duration-300 hover:scale-110 hover:rotate-12 animate-fade-in-up"
+                  target='_blank'
+                >
+                  <Linkedin size={24} />
+                </a>
+                <a
+                  href="mailto:shamaksoumil@gmail.com"
+                  className="p-3 bg-blue-900/30 hover:bg-blue-800/50 rounded-full transition-all duration-300 hover:scale-110 hover:rotate-12 animate-fade-in-up"
+                  target='_blank'
+                >
+                  <Mail size={24} />
+                </a>
+          </div>
         </div>
       </footer>
 
